@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blush & Bloom — Nails & Mehndi Arts by Vishakha Sharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #0a0908;
+    --black-deep: #050403;
+    --gold: #c9973a;
+    --gold-light: #f0d796;
+    --gold-dim: #8a6a2c;
+    --blush: #e08a7a;
+    --blush-deep: #b23a2f;
+    --maroon: #5c1420;
+    --cream: #f3ead9;
+    --cream-dim: #cfc2a8;
+    --line: rgba(201,151,58,0.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Playfair Display', serif;}
+  .script{font-family:'Great Vibes', cursive; font-weight:400;}
+  .utility{font-family:'Poppins', sans-serif;}
+
+  .gold-text{
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 55%, var(--gold-dim) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .blush-text{
+    background: linear-gradient(180deg, #f2a596 0%, var(--blush) 55%, var(--blush-deep) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+  section{position:relative;}
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .9s ease, transform .9s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 5%;
+    background:linear-gradient(180deg, rgba(10,9,8,0.95), rgba(10,9,8,0.7) 70%, transparent);
+    transition:padding .3s ease, background .3s ease;
+  }
+  header.scrolled{
+    background:rgba(8,7,6,0.92);
+    backdrop-filter:blur(8px);
+    padding:10px 5%;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:44px; height:44px; border-radius:50%;
+    border:1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display', serif; font-weight:700; font-size:16px;
+    background:radial-gradient(circle at 35% 30%, #1a1512, #0a0908);
+  }
+  .brand-mark span:first-child{color:var(--gold-light);}
+  .brand-mark span:last-child{color:var(--blush);}
+  .brand-name{font-family:'Playfair Display', serif; font-size:1.2rem; letter-spacing:.03em; line-height:1.1;}
+  .brand-name small{display:block; font-family:'Poppins',sans-serif; font-size:.55rem; letter-spacing:.28em; color:var(--cream-dim); font-weight:400; margin-top:2px;}
+
+  nav{display:flex; align-items:center; gap:34px;}
+  nav a{
+    font-family:'Poppins', sans-serif; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--cream-dim); position:relative; padding-bottom:4px;
+  }
+  nav a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--gold); transition:width .3s ease;}
+  nav a:hover{color:var(--gold-light);}
+  nav a:hover::after{width:100%;}
+
+  .btn-book{
+    font-family:'Poppins', sans-serif; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+    background:linear-gradient(135deg, var(--gold-light), var(--gold) 60%, var(--gold-dim));
+    color:#241a08; padding:11px 22px; border-radius:2px; font-weight:600;
+    display:inline-flex; align-items:center; gap:8px;
+    box-shadow:0 4px 18px rgba(201,151,58,0.25);
+    transition:transform .25s ease, box-shadow .25s ease;
+    white-space:nowrap;
+  }
+  .btn-book:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,151,58,0.4);}
+  .btn-book svg{width:15px; height:15px;}
+
+  .menu-toggle{display:none; background:none; border:none; color:var(--gold); font-size:1.6rem; cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:140px 6% 100px; position:relative;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% 18%, rgba(178,58,47,0.10), transparent 70%),
+      radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,151,58,0.08), transparent 70%),
+      var(--black);
+  }
+  .corner-art{position:absolute; width:230px; opacity:.85; pointer-events:none;}
+  .corner-tl{top:70px; left:-20px;}
+  .corner-tr{top:70px; right:-20px; transform:scaleX(-1);}
+  @media (max-width:700px){ .corner-art{width:120px;} }
+
+  .hero-badge{
+    width:150px; height:150px; border-radius:50%; margin-bottom:32px;
+    border:1.5px solid var(--gold); position:relative;
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 35% 30%, #1c1611, #08070600);
+  }
+  .hero-badge::before{
+    content:''; position:absolute; inset:-8px; border-radius:50%;
+    border:1px solid rgba(201,151,58,0.35);
+  }
+  .hero-badge .monogram{font-family:'Playfair Display',serif; font-weight:700; font-size:2.6rem;}
+  .hero-badge .ring-text{
+    position:absolute; inset:0; font-family:'Poppins',sans-serif; font-size:.52rem; letter-spacing:.2em;
+    color:var(--cream-dim);
+  }
+  .ring-text-path{fill:var(--cream-dim); font-size:9.2px; letter-spacing:2.6px; font-family:'Poppins',sans-serif;}
+
+  .eyebrow-line{
+    display:flex; align-items:center; gap:14px; color:var(--gold); font-family:'Poppins',sans-serif;
+    font-size:.72rem; letter-spacing:.32em; text-transform:uppercase; margin-bottom:22px;
+  }
+  .eyebrow-line .bar{width:46px; height:1px; background:linear-gradient(90deg, transparent, var(--gold));}
+  .eyebrow-line .bar:last-child{background:linear-gradient(90deg, var(--gold), transparent);}
+
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5.6rem); font-weight:700; line-height:1.05; letter-spacing:.01em;
+  }
+  .hero h2.sub{
+    font-size:clamp(1.5rem, 3.4vw, 2.5rem); font-weight:500; font-style:italic; color:var(--cream);
+    margin-top:6px; letter-spacing:.02em;
+  }
+  .hero .by-line{margin-top:22px; font-family:'Poppins',sans-serif; font-size:.85rem; letter-spacing:.15em; color:var(--cream-dim); text-transform:uppercase;}
+  .hero .signature{font-family:'Great Vibes',cursive; font-size:2.6rem; color:var(--gold-light); margin-top:2px;}
+
+  .hero-tagline{max-width:520px; margin:26px auto 0; font-size:1.15rem; color:var(--cream-dim); line-height:1.7;}
+
+  .hero-ctas{display:flex; gap:18px; margin-top:40px; flex-wrap:wrap; justify-content:center;}
+  .btn-outline{
+    font-family:'Poppins',sans-serif; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
+    border:1px solid var(--gold-dim); color:var(--gold-light); padding:13px 28px; border-radius:2px;
+    transition:all .3s ease;
+  }
+  .btn-outline:hover{border-color:var(--gold); background:rgba(201,151,58,0.08);}
+
+  /* ---------- Section shared ---------- */
+  .section-inner{max-width:1180px; margin:0 auto; padding:130px 6%;}
+  .section-head{text-align:center; margin-bottom:64px;}
+  .section-head .eyebrow{
+    font-family:'Poppins',sans-serif; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--blush);
+    margin-bottom:14px; display:block;
+  }
+  .section-head h2{font-size:clamp(2rem,4.5vw,3rem); font-weight:600;}
+
+  .divider{
+    width:100%; display:flex; align-items:center; justify-content:center; gap:16px; padding:0 6%;
+  }
+  .divider .line{height:1px; flex:1; max-width:280px; background:linear-gradient(90deg, transparent, var(--line), transparent);}
+  .divider svg{width:28px; height:28px; opacity:.8;}
+
+  /* ---------- About ---------- */
+  .about-wrap{display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:center;}
+  @media (max-width:860px){.about-wrap{grid-template-columns:1fr;}}
+  .about-frame{
+    position:relative; aspect-ratio:4/5; border-radius:6px; overflow:hidden;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(224,138,122,0.25), transparent 55%),
+      radial-gradient(circle at 70% 80%, rgba(201,151,58,0.25), transparent 55%),
+      linear-gradient(160deg, #14100c, #060504);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .about-frame::before{
+    content:''; position:absolute; inset:14px; border:1px solid rgba(201,151,58,0.3); border-radius:4px;
+  }
+  .about-frame .initials{font-family:'Great Vibes',cursive; font-size:5rem; color:var(--gold-light); opacity:.9;}
+  .about-frame .sub-label{
+    position:absolute; bottom:34px; font-family:'Poppins',sans-serif; font-size:.68rem; letter-spacing:.25em;
+    text-transform:uppercase; color:var(--cream-dim);
+  }
+
+  .about-text h3{font-size:clamp(1.6rem,3vw,2.2rem); font-weight:600; margin-bottom:22px; line-height:1.3;}
+  .about-text p{color:var(--cream-dim); font-size:1.12rem; line-height:1.85; margin-bottom:18px;}
+  .about-stats{display:flex; gap:36px; margin-top:32px; flex-wrap:wrap;}
+  .about-stats div{text-align:left;}
+  .about-stats .num{font-family:'Playfair Display',serif; font-size:1.9rem; color:var(--gold-light); font-weight:700;}
+  .about-stats .lbl{font-family:'Poppins',sans-serif; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--cream-dim); margin-top:4px;}
+
+  .specialty-tags{display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;}
+  .specialty-tags span{
+    font-family:'Poppins',sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase;
+    border:1px solid var(--gold-dim); color:var(--cream); padding:8px 16px; border-radius:20px;
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  @media (max-width:900px){.testi-grid{grid-template-columns:1fr;}}
+  .testi-card{
+    background:linear-gradient(160deg, rgba(224,138,122,0.05), rgba(0,0,0,0));
+    border:1px solid var(--line); border-radius:6px; padding:38px 30px; position:relative;
+  }
+  .testi-card .quote-mark{font-family:'Playfair Display',serif; font-size:3rem; color:var(--gold); line-height:1; opacity:.7;}
+  .testi-card p{color:var(--cream-dim); font-size:1.08rem; line-height:1.8; margin:14px 0 22px; font-style:italic;}
+  .testi-stars{color:var(--gold); font-size:.9rem; letter-spacing:3px; margin-bottom:8px;}
+  .testi-name{font-family:'Poppins',sans-serif; font-size:.85rem; letter-spacing:.05em; color:var(--cream);}
+  .testi-role{font-family:'Poppins',sans-serif; font-size:.7rem; color:var(--blush); margin-top:2px; text-transform:uppercase; letter-spacing:.1em;}
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:190px; gap:14px;
+  }
+  .gallery-grid .g1{grid-column:span 2; grid-row:span 2;}
+  @media (max-width:860px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-grid .g1{grid-column:span 2; grid-row:span 1;}
+  }
+  .gallery-tile{
+    position:relative; border-radius:4px; overflow:hidden; border:1px solid var(--line);
+    display:flex; align-items:flex-end; padding:16px;
+    cursor:pointer;
+  }
+  .gallery-tile .cap{
+    font-family:'Poppins',sans-serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--cream);
+    position:relative; z-index:2;
+    opacity:0; transform:translateY(10px); transition:all .35s ease;
+  }
+  .gallery-tile::after{content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,0.75), transparent 60%); z-index:1; opacity:0; transition:opacity .35s ease;}
+  .gallery-tile:hover::after{opacity:1;}
+  .gallery-tile:hover .cap{opacity:1; transform:translateY(0);}
+  .gallery-tile:hover .g-icon{transform:scale(1.08);}
+  .g-icon{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transition:transform .5s ease;}
+  .g-icon svg{width:38%; height:38%; opacity:.55;}
+  .gt1{background:linear-gradient(150deg,#3a1414,#0a0908);}
+  .gt2{background:linear-gradient(150deg,#2a1e0c,#0a0908);}
+  .gt3{background:linear-gradient(150deg,#1c1512,#0a0908);}
+  .gt4{background:linear-gradient(150deg,#331b1c,#0a0908);}
+  .gt5{background:linear-gradient(150deg,#241a10,#0a0908);}
+  .gt6{background:linear-gradient(150deg,#2c1414,#0a0908);}
+  .gallery-note{text-align:center; margin-top:26px; color:var(--cream-dim); font-family:'Poppins',sans-serif; font-size:.8rem; letter-spacing:.05em;}
+
+  /* ---------- Contact ---------- */
+  .contact-wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:stretch;}
+  @media (max-width:860px){.contact-wrap{grid-template-columns:1fr;}}
+  .contact-info{display:flex; flex-direction:column; gap:26px; justify-content:center;}
+  .contact-row{display:flex; gap:18px; align-items:flex-start;}
+  .contact-row .icon{
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--gold-dim);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .contact-row .icon svg{width:18px; height:18px; color:var(--gold-light);}
+  .contact-row h4{font-family:'Poppins',sans-serif; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--blush); margin-bottom:4px;}
+  .contact-row p, .contact-row a{color:var(--cream); font-size:1.08rem; line-height:1.6;}
+  .contact-row a:hover{color:var(--gold-light);}
+
+  .map-frame{border:1px solid var(--line); border-radius:6px; overflow:hidden; min-height:340px;}
+  .map-frame iframe{width:100%; height:100%; min-height:340px; border:0; filter:grayscale(0.3) contrast(1.05);}
+
+  .big-book{
+    margin-top:40px; text-align:center; padding:46px; border:1px solid var(--line); border-radius:8px;
+    background:radial-gradient(ellipse at 50% 0%, rgba(201,151,58,0.06), transparent 70%);
+  }
+  .big-book h3{font-size:1.7rem; font-weight:600; margin-bottom:10px;}
+  .big-book p{color:var(--cream-dim); margin-bottom:24px;}
+
+  footer{
+    text-align:center; padding:40px 6% 50px; border-top:1px solid var(--line);
+    font-family:'Poppins',sans-serif; font-size:.75rem; color:var(--cream-dim); letter-spacing:.05em;
+  }
+  footer .script{font-size:1.4rem; color:var(--gold-light); display:block; margin-bottom:10px;}
+
+  /* Mobile nav */
+  @media (max-width:860px){
+    nav{position:fixed; top:0; right:-100%; height:100vh; width:70%; max-width:320px;
+      background:rgba(8,7,6,0.98); flex-direction:column; justify-content:center; gap:30px;
+      transition:right .4s ease; border-left:1px solid var(--line);}
+    nav.open{right:0;}
+    .menu-toggle{display:block;}
+    .btn-book{padding:9px 16px; font-size:.68rem;}
+    .brand-name{font-size:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="brand">
+    <div class="brand-mark"><span>B</span><span>B</span></div>
+    <div class="brand-name">Blush &amp; Bloom<small>Nails &amp; Mehndi Studio</small></div>
+  </div>
+  <nav id="mainNav">
+    <a href="#about" onclick="closeNav()">About</a>
+    <a href="#gallery" onclick="closeNav()">Gallery</a>
+    <a href="#testimonials" onclick="closeNav()">Reviews</a>
+    <a href="#contact" onclick="closeNav()">Contact</a>
+    <a class="btn-book" href="https://wa.me/918178439037?text=Hi%20Blush%20%26%20Bloom%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 12 4a9 9 0 0 0-7.8 13.4L4 20l2.7-.7A9 9 0 0 0 12 21a9 9 0 0 0 5.6-16.7zM12 19.3a7.3 7.3 0 0 1-3.7-1l-.3-.2-2.4.6.6-2.3-.2-.3a7.4 7.4 0 1 1 6 3.2zm4-5.5c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.5.7-.6.8-.2.1-.4 0a6 6 0 0 1-1.8-1.1 6.6 6.6 0 0 1-1.2-1.6c-.1-.2 0-.3.1-.4l.3-.4.2-.3v-.3c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2 4.7 4.7 0 0 0 1 2.5 10.6 10.6 0 0 0 4.2 3.7c.6.2 1 .4 1.4.5a3.2 3.2 0 0 0 1.5.1 2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
+      Book Now
+    </a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+
+  <svg class="corner-art corner-tl" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#7a2430" stroke-width="1">
+      <path d="M10 10 C 40 30, 60 10, 90 30 C 110 45, 130 25, 150 40" opacity=".8"/>
+      <circle cx="30" cy="35" r="18"/>
+      <circle cx="30" cy="35" r="8"/>
+      <path d="M30 17 Q 40 5 50 17" />
+      <path d="M30 53 Q 40 65 50 53" />
+      <path d="M12 35 Q 0 25 -8 35" />
+      <path d="M12 35 Q 0 45 -8 45" />
+      <path d="M48 35 Q 60 25 68 35" />
+      <path d="M55 55 Q 75 65 85 85" />
+      <path d="M65 70 Q 70 78 62 84" />
+      <path d="M78 80 Q 86 86 80 94" />
+    </g>
+  </svg>
+  <svg class="corner-art corner-tr" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#7a2430" stroke-width="1">
+      <path d="M10 10 C 40 30, 60 10, 90 30 C 110 45, 130 25, 150 40" opacity=".8"/>
+      <circle cx="30" cy="35" r="18"/>
+      <circle cx="30" cy="35" r="8"/>
+      <path d="M30 17 Q 40 5 50 17" />
+      <path d="M30 53 Q 40 65 50 53" />
+      <path d="M12 35 Q 0 25 -8 35" />
+      <path d="M12 35 Q 0 45 -8 45" />
+      <path d="M48 35 Q 60 25 68 35" />
+      <path d="M55 55 Q 75 65 85 85" />
+      <path d="M65 70 Q 70 78 62 84" />
+      <path d="M78 80 Q 86 86 80 94" />
+    </g>
+  </svg>
+
+  <div class="hero-badge reveal">
+    <svg width="166" height="166" style="position:absolute;">
+      <defs><path id="ringPath" d="M 83,83 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/></defs>
+      <text class="ring-text-path"><textPath href="#ringPath" startOffset="2%">NAILS &amp; MEHNDI STUDIO · EST. 2026 · </textPath></text>
+    </svg>
+    <span class="monogram gold-text">B</span><span class="monogram blush-text" style="margin-left:-6px;">B</span>
+  </div>
+
+  <div class="eyebrow-line reveal"><span class="bar"></span>Ghaziabad's Home Studio<span class="bar"></span></div>
+
+  <h1 class="reveal"><span class="blush-text">Blush</span> &amp; <span class="gold-text">Bloom</span></h1>
+  <h2 class="sub reveal">Nails &amp; Mehndi Arts</h2>
+  <div class="by-line reveal">By</div>
+  <div class="signature reveal">Vishakha Sharma</div>
+
+  <p class="hero-tagline reveal">Bespoke nail artistry and bridal mehndi, hand-done in a private home studio — where every appointment feels like it was designed just for you.</p>
+
+  <div class="hero-ctas reveal">
+    <a class="btn-book" href="https://wa.me/918178439037?text=Hi%20Blush%20%26%20Bloom%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 12 4a9 9 0 0 0-7.8 13.4L4 20l2.7-.7A9 9 0 0 0 12 21a9 9 0 0 0 5.6-16.7zM12 19.3a7.3 7.3 0 0 1-3.7-1l-.3-.2-2.4.6.6-2.3-.2-.3a7.4 7.4 0 1 1 6 3.2zm4-5.5c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.5.7-.6.8-.2.1-.4 0a6 6 0 0 1-1.8-1.1 6.6 6.6 0 0 1-1.2-1.6c-.1-.2 0-.3.1-.4l.3-.4.2-.3v-.3c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2 4.7 4.7 0 0 0 1 2.5 10.6 10.6 0 0 0 4.2 3.7c.6.2 1 .4 1.4.5a3.2 3.2 0 0 0 1.5.1 2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
+      Book on WhatsApp
+    </a>
+    <a class="btn-outline" href="#gallery">View Gallery</a>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-wrap">
+      <div class="about-frame reveal">
+        <span class="initials">V</span>
+        <span class="sub-label">Vishakha Sharma · Founder</span>
+      </div>
+      <div class="about-text reveal">
+        <span class="section-head eyebrow" style="display:block; text-align:left;">The Artist</span>
+        <h3>A studio built on patience, precision <span class="blush-text" style="font-style:italic;">and care</span></h3>
+        <p>Blush &amp; Bloom began the way most good things do — with people asking Vishakha to do their nails and mehndi at home instead of the salon down the road. What started as appointments for friends has grown into a private studio where every client gets the same unhurried attention.</p>
+        <p>Every design is planned around your hands, your skin, your occasion — not a fixed catalogue. Bridal mehndi is booked weeks in advance and hygiene is non-negotiable: sanitised tools, single-use files, and fresh products for every client.</p>
+        <div class="specialty-tags">
+          <span>Bridal Mehndi</span>
+          <span>Gel Extensions</span>
+          <span>Nail Art</span>
+          <span>Arabic &amp; Indo-Arabic</span>
+          <span>Party Mehndi</span>
+        </div>
+        <div class="about-stats">
+          <div><div class="num">500+</div><div class="lbl">Clients Served</div></div>
+          <div><div class="num">100%</div><div class="lbl">Home Studio</div></div>
+          <div><div class="num">2026</div><div class="lbl">Est. Ghaziabad</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal">
+  <div class="line"></div>
+  <svg viewBox="0 0 40 40" fill="none" stroke="#c9973a" stroke-width="1"><path d="M20 4c6 6 6 10 0 16-6-6-6-10 0-16z"/><path d="M20 20c6 6 6 10 0 16-6-6-6-10 0-16z"/><circle cx="20" cy="20" r="2" fill="#c9973a" stroke="none"/></svg>
+  <div class="line"></div>
+</div>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kind Words</span>
+      <h2>What clients <span class="gold-text" style="font-style:italic;">are saying</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="quote-mark">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p>My bridal mehndi came out even better than the reference photo I showed. Vishakha understood exactly what I wanted and finished it so neatly.</p>
+        <div class="testi-name">Ritika Malhotra</div>
+        <div class="testi-role">Bridal Mehndi</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="quote-mark">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p>I've had gel extensions done at three different salons. This home studio experience was calmer, cleaner, and honestly the nails have lasted the longest.</p>
+        <div class="testi-name">Anushka Verma</div>
+        <div class="testi-role">Gel Extensions</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="quote-mark">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p>Booked mehndi for six of us before Diwali. Vishakha managed everyone's timing perfectly and every single design was unique. Highly recommend.</p>
+        <div class="testi-name">Priya Sharma</div>
+        <div class="testi-role">Party Mehndi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal">
+  <div class="line"></div>
+  <svg viewBox="0 0 40 40" fill="none" stroke="#c9973a" stroke-width="1"><path d="M20 4c6 6 6 10 0 16-6-6-6-10 0-16z"/><path d="M20 20c6 6 6 10 0 16-6-6-6-10 0-16z"/><circle cx="20" cy="20" r="2" fill="#c9973a" stroke="none"/></svg>
+  <div class="line"></div>
+</div>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Work</span>
+      <h2>A glimpse of the <span class="blush-text" style="font-style:italic;">studio's craft</span></h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-tile g1 gt1">
+        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><path d="M12 2c3 3 3 6 0 9-3-3-3-6 0-9z"/><path d="M12 11c3 3 3 6 0 9-3-3-3-6 0-9z"/></svg></div>
+        <div class="cap">Bridal Mehndi — Full Hand</div>
+      </div>
+      <div class="gallery-tile gt2">
+        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><rect x="7" y="3" width="10" height="16" rx="5"/></svg></div>
+        <div class="cap">Gel Nail Art</div>
+      </div>
+      <div class="gallery-tile gt3">
+        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><path d="M12 2c3 3 3 6 0 9-3-3-3-6 0-9z"/></svg></div>
+        <div class="cap">Arabic Mehndi</div>
+      </div>
+      <div class="gallery-tile gt4">
+        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><rect x="7" y="3" width="10" height="16" rx="5"/></svg></div>
+        <div class="cap">French Ombre</div>
+      </div>
+      <div class="gallery-tile gt5">
+        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><path d="M12 11c3 3 3 6 0 9-3-3-3-6 0-9z"/></svg></div>
+        <div class="cap">Party Mehndi</div>
+      </div>
+      <div class="gallery-tile gt6">
+        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><rect x="7" y="3" width="10" height="16" rx="5"/></svg></div>
+        <div class="cap">Chrome Finish Set</div>
+      </div>
+    </div>
+    <p class="gallery-note reveal">Placeholder tiles shown above — swap in real client photos once you share them.</p>
+  </div>
+</section>
+
+<div class="divider reveal">
+  <div class="line"></div>
+  <svg viewBox="0 0 40 40" fill="none" stroke="#c9973a" stroke-width="1"><path d="M20 4c6 6 6 10 0 16-6-6-6-10 0-16z"/><path d="M20 20c6 6 6 10 0 16-6-6-6-10 0-16z"/><circle cx="20" cy="20" r="2" fill="#c9973a" stroke="none"/></svg>
+  <div class="line"></div>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow">Visit / Book</span>
+      <h2>Let's plan your <span class="gold-text" style="font-style:italic;">next appointment</span></h2>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <div class="contact-row">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.6 6.3A8.9 8.9 0 0 0 12 4a9 9 0 0 0-7.8 13.4L4 20l2.7-.7A9 9 0 0 0 12 21a9 9 0 0 0 5.6-16.7z"/></svg></div>
+          <div>
+            <h4>WhatsApp / Call</h4>
+            <a href="tel:+918178439037">+91 81784 39037</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+          <div>
+            <h4>Studio Location</h4>
+            <p>Blush &amp; Bloom Nails &amp; Mehndi Studio<br>Ghaziabad, Uttar Pradesh</p>
+            <a href="https://www.google.com/search?q=Blush+%26+Bloom+Nails+%26+Mehndi+Arts&stick=H4sIAAAAAAAA_-NgU1I1qDC2NEhOM0wzNU8zMTFKtUyzMqhITElKtTA0NrZMNUszNjCzWMSq6JRTWpyhoKbglJOfn6vgl5iZUwzk-aZm5KVkKjgWlRQDAF19V4JNAAAA&hl=en&mat=CTxRyVa3ItdaElYBa0lj_2FcbKadcaquYlWIJMSyO7QfnDqbI2GQdErWnMx5rBbhRJeuk9cV0Nq-pKe5nAsOtcoo11pUb7DUQcNFEv7yl1D3fvQKK6Y5PFB_nUdXOQzedg&authuser=0" target="_blank" rel="noopener" style="font-size:.85rem; color:#c9973a; text-decoration:underline;">View on Google →</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div>
+            <h4>Studio Hours</h4>
+            <p>Mon – Sat, 10:00 AM – 7:30 PM<br>Sunday by appointment only</p>
+          </div>
+        </div>
+
+        <div class="big-book">
+          <h3>Ready to book?</h3>
+          <p>Tap below and we'll reply on WhatsApp within the day.</p>
+          <a class="btn-book" href="https://wa.me/918178439037?text=Hi%20Blush%20%26%20Bloom%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 12 4a9 9 0 0 0-7.8 13.4L4 20l2.7-.7A9 9 0 0 0 12 21a9 9 0 0 0 5.6-16.7z"/></svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="map-frame reveal">
+        <iframe src="https://www.google.com/maps?q=Blush+%26+Bloom+Nails+%26+Mehndi+Arts&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="script">Blush &amp; Bloom</span>
+  © 2026 Blush &amp; Bloom Nails &amp; Mehndi Studio, by Vishakha Sharma. All rights reserved.
+</footer>
+
+<script>
+  // header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
+  function closeNav(){ mainNav.classList.remove('open'); }
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
