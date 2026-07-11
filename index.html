@@ -129,14 +129,8 @@
     z-index:2;
   }
   .hero-badge .logo-img{
-    width:78%; height:78%; object-fit:contain; position:relative; z-index:1;
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1;
   }
-  .hero-badge .monogram{font-family:'Playfair Display',serif; font-weight:700; font-size:2.6rem;}
-  .hero-badge .ring-text{
-    position:absolute; inset:0; font-family:'Poppins',sans-serif; font-size:.52rem; letter-spacing:.2em;
-    color:var(--cream-dim);
-  }
-  .ring-text-path{fill:var(--cream-dim); font-size:9.2px; letter-spacing:2.6px; font-family:'Poppins',sans-serif;}
 
   .eyebrow-line{
     display:flex; align-items:center; gap:14px; color:var(--gold); font-family:'Poppins',sans-serif;
@@ -306,15 +300,11 @@
   .gallery-tile::after{content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,0.75), transparent 60%); z-index:1; opacity:0; transition:opacity .35s ease;}
   .gallery-tile:hover::after{opacity:1;}
   .gallery-tile:hover .cap{opacity:1; transform:translateY(0);}
-  .gallery-tile:hover .g-icon{transform:scale(1.08);}
-  .g-icon{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transition:transform .5s ease;}
-  .g-icon svg{width:38%; height:38%; opacity:.55;}
-  .gt1{background:linear-gradient(150deg,#3a1414,#0a0908);}
-  .gt2{background:linear-gradient(150deg,#2a1e0c,#0a0908);}
-  .gt3{background:linear-gradient(150deg,#1c1512,#0a0908);}
-  .gt4{background:linear-gradient(150deg,#331b1c,#0a0908);}
-  .gt5{background:linear-gradient(150deg,#241a10,#0a0908);}
-  .gt6{background:linear-gradient(150deg,#2c1414,#0a0908);}
+  .gallery-tile:hover img{transform:scale(1.08);}
+  .gallery-tile img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    transition:transform .6s ease; z-index:0;
+  }
   .gallery-note{text-align:center; margin-top:26px; color:var(--cream-dim); font-family:'Poppins',sans-serif; font-size:.8rem; letter-spacing:.05em;}
 
   /* ---------- Contact ---------- */
@@ -415,10 +405,6 @@
   </svg>
 
   <div class="hero-badge reveal">
-    <svg width="166" height="166" style="position:absolute;">
-      <defs><path id="ringPath" d="M 83,83 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/></defs>
-      <text class="ring-text-path"><textPath href="#ringPath" startOffset="2%">NAILS &amp; MEHNDI STUDIO · EST. 2026 · </textPath></text>
-    </svg>
     <img class="logo-img" src="assets/logo.png" alt="Blush & Bloom logo">
   </div>
 
@@ -575,32 +561,32 @@
       <h2>A glimpse of the <span class="blush-text" style="font-style:italic;">studio's craft</span></h2>
     </div>
     <div class="gallery-grid reveal">
-      <div class="gallery-tile g1 gt1">
-        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><path d="M12 2c3 3 3 6 0 9-3-3-3-6 0-9z"/><path d="M12 11c3 3 3 6 0 9-3-3-3-6 0-9z"/></svg></div>
+      <div class="gallery-tile g1">
+        <img src="assets/gallery/g1-bridal-mehndi.jpg" alt="Intricate bridal mehndi on both hands" style="object-position:center 30%;">
         <div class="cap">Bridal Mehndi — Full Hand</div>
       </div>
-      <div class="gallery-tile gt2">
-        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><rect x="7" y="3" width="10" height="16" rx="5"/></svg></div>
-        <div class="cap">Gel Nail Art</div>
+      <div class="gallery-tile">
+        <img src="assets/gallery/gt2-floral-nail-art.jpg" alt="White 3D floral nail art with gold accents" style="object-position:center 25%;">
+        <div class="cap">3D Floral Nail Art</div>
       </div>
-      <div class="gallery-tile gt3">
-        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><path d="M12 2c3 3 3 6 0 9-3-3-3-6 0-9z"/></svg></div>
-        <div class="cap">Arabic Mehndi</div>
+      <div class="gallery-tile">
+        <img src="assets/gallery/gt3-palm-mehndi.jpg" alt="Traditional palm mehndi design" style="object-position:center 35%;">
+        <div class="cap">Traditional Palm Mehndi</div>
       </div>
-      <div class="gallery-tile gt4">
-        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><rect x="7" y="3" width="10" height="16" rx="5"/></svg></div>
-        <div class="cap">French Ombre</div>
+      <div class="gallery-tile">
+        <img src="assets/gallery/gt4-french-ombre.jpg" alt="French ombre nails with silver glitter" style="object-position:center 20%;">
+        <div class="cap">French Ombre &amp; Glitter</div>
       </div>
-      <div class="gallery-tile gt5">
-        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><path d="M12 11c3 3 3 6 0 9-3-3-3-6 0-9z"/></svg></div>
+      <div class="gallery-tile">
+        <img src="assets/gallery/gt5-party-mehndi.jpg" alt="Party mehndi design on palms" style="object-position:center 35%;">
         <div class="cap">Party Mehndi</div>
       </div>
-      <div class="gallery-tile gt6">
-        <div class="g-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b98a" stroke-width="1"><rect x="7" y="3" width="10" height="16" rx="5"/></svg></div>
-        <div class="cap">Chrome Finish Set</div>
+      <div class="gallery-tile">
+        <img src="assets/gallery/gt6-leopard-nails.jpg" alt="Leopard print gel nails" style="object-position:center 40%;">
+        <div class="cap">Leopard Print Nails</div>
       </div>
     </div>
-    <p class="gallery-note reveal">Placeholder tiles shown above — swap in real client photos once you share them.</p>
+    <p class="gallery-note reveal">A glimpse of real bridal mehndi and nail art from the Blush &amp; Bloom studio.</p>
   </div>
 </section>
 
